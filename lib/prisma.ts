@@ -5,8 +5,6 @@ import { z } from 'zod'
 
 const connectionString = `${process.env.DATABASE_URL}`
 
-const adapter = new PrismaPg({ connectionString })
-
 export const UserCreateInput = z.object({
 	first_name: z.string().min(2).max(100),
 	last_name: z.string().min(2).max(100),
@@ -14,11 +12,18 @@ export const UserCreateInput = z.object({
 	password: z.string().min(6).max(100),
 })
 
+const adapter = new PrismaPg({ connectionString })
 const prisma = new PrismaClient({ adapter }).$extends({
 	query: {
 		user: {
 			create({ args, query }) {
 				args.data = UserCreateInput.parse(args.data)
+				return query(args)
+			},
+		},
+		post: {
+			findMany({ args, query }) {
+				args.where = { ...args.where, deleted_at: null }
 				return query(args)
 			},
 		},

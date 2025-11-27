@@ -1,0 +1,17 @@
+-- AlterTable
+ALTER TABLE "Branch" ADD COLUMN     "deleted_at" TIMESTAMP(3);
+
+-- AlterTable
+ALTER TABLE "Comment" ADD COLUMN     "deleted_at" TIMESTAMP(3);
+
+-- AlterTable
+ALTER TABLE "Post" ADD COLUMN     "deleted_at" TIMESTAMP(3);
+
+-- AlterTable
+ALTER TABLE "PostImage" ADD COLUMN     "deleted_at" TIMESTAMP(3);
+
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "deleted_at" TIMESTAMP(3);
+
+-- AlterTable
+ALTER TABLE "UserImage" ADD COLUMN     "deleted_at" TIMESTAMP(3);

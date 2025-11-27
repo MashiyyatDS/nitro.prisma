@@ -1,0 +1,6 @@
+{
+	"cSpell.words": ["Imageable"],
+	"[prisma]": {
+		"editor.defaultFormatter": "Prisma.prisma"
+	}
+}
