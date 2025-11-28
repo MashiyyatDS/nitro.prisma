@@ -1,6 +1,7 @@
 {
-	"cSpell.words": ["Imageable"],
+	"cSpell.words": ["autoincrement", "Imageable"],
 	"[prisma]": {
 		"editor.defaultFormatter": "Prisma.prisma"
-	}
+	},
+	"postman.settings.dotenv-detection-notification-visibility": false
 }
