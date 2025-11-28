@@ -1,10 +1,8 @@
-import { defineEventHandler } from 'h3'
+//import { useCrypto } from '../../utils/utils'
 import prisma from '../../../lib/prisma'
+import { defineEventHandler } from 'h3'
 
-export default defineEventHandler(async (event) => {
-	const page = 1
-	const limit = 5
-
+export default defineEventHandler(async () => {
 	const [users, total] = await Promise.all([
 		prisma.user.findMany({
 			orderBy: { created_at: 'asc' },
@@ -15,23 +13,17 @@ export default defineEventHandler(async (event) => {
 						title: true,
 						created_at: true,
 					},
-					take: 2,
 				},
 				roles: {
-					select: {
-						name: true,
-					},
+					select: { name: true },
 				},
 			},
 		}),
 		prisma.user.count(),
 	])
 
-	prisma['user'].findMany({})
-
 	return {
 		users,
 		total,
-		limit,
 	}
 })

@@ -1,4 +1,5 @@
 import CryptoJS from 'crypto-js'
+import bcrypt from 'bcrypt'
 
 export default async function restore(prismaModel: any, id: number) {
 	const modelResponse = await prismaModel.update({
@@ -25,14 +26,15 @@ export function useCrypto() {
 }
 
 export function useHash() {
-	const create = (value: string): string => {
-		return CryptoJS.SHA256(value + encryptionKey).toString()
+	async function verify(password: string, hash: string) {
+		return await bcrypt.compare(password, hash)
 	}
 
-	const check = (value: string, hashedValue: string): boolean => {
-		const newHash = CryptoJS.SHA256(value + encryptionKey).toString()
-		return newHash === hashedValue
+	async function hash(password: string): Promise<string> {
+		const saltRounds = 10
+		const hash = await bcrypt.hash(password, saltRounds)
+		return hash
 	}
 
-	return { create, check }
+	return { verify, hash }
 }

@@ -1,20 +1,16 @@
 import { defineEventHandler, readBody } from 'h3'
 import { User } from 'generated/prisma/client'
-import prisma from '../../../lib/prisma'
 import { useHash } from '../../utils/utils'
+import prisma from '../../../lib/prisma'
 
 export default defineEventHandler(async (event) => {
 	const data: User = await readBody(event)
+	data['password'] = await useHash().hash(data.password)
 
 	const user = await prisma.user.update({
+		data,
 		where: { id: data.id },
-		data: {
-			...data,
-			password: useHash().create(data.password),
-		},
-		include: {
-			roles: true,
-		},
+		include: { roles: true },
 	})
 
 	return {
