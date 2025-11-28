@@ -9,8 +9,10 @@ export default defineNitroConfig({
 		websocket: true,
 	},
 	routeRules: {
-		'/api/user/login': {
-			headers: {},
+		'/api/user': {
+			headers: {
+				'require-auth': 'true',
+			},
 		},
 	},
 })

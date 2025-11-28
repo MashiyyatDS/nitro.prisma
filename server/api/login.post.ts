@@ -1,5 +1,5 @@
 import { defineEventHandler, readBody } from 'h3'
-import prisma from '../../../lib/prisma'
+import prisma from '~/lib/prisma'
 import * as jose from 'jose'
 import bcrypt from 'bcrypt'
 import { z } from 'zod'

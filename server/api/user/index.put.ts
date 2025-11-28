@@ -1,7 +1,7 @@
 import { defineEventHandler, readBody } from 'h3'
 import { User } from 'generated/prisma/client'
-import { useHash } from '../../utils/utils'
-import prisma from '../../../lib/prisma'
+import { useHash } from '~/utils/utils'
+import prisma from '~/lib/prisma'
 
 export default defineEventHandler(async (event) => {
 	const data: User = await readBody(event)

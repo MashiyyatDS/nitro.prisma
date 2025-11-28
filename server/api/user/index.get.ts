@@ -1,5 +1,5 @@
 //import { useCrypto } from '../../utils/utils'
-import prisma from '../../../lib/prisma'
+import prisma from '~/lib/prisma'
 import { defineEventHandler } from 'h3'
 
 export default defineEventHandler(async () => {

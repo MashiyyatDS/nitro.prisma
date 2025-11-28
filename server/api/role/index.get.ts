@@ -1,6 +1,6 @@
 import { defineEventHandler } from 'h3'
-import prisma from '../../../lib/prisma'
-import { useCrypto } from '../../utils/utils'
+import prisma from '~/lib/prisma'
+import { useCrypto } from '~/utils/utils'
 
 export default defineEventHandler(async (event) => {
 	const roles = await prisma.role.findMany({

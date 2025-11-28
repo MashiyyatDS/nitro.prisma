@@ -1,10 +1,7 @@
 import { defineEventHandler, getRouterParam } from 'h3'
-import useVerifyToken from '../../utils/useVerifyToken'
-import prisma from '../../../lib/prisma'
+import prisma from '~/lib/prisma'
 
 export default defineEventHandler(async (event) => {
-	await useVerifyToken(event)
-
 	const params = Number(getRouterParam(event, 'id'))
 
 	if (!params || typeof params !== 'number') {
