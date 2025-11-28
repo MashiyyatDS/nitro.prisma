@@ -8,18 +8,20 @@ datasource db {
 }
 
 model User {
-    id          Int         @id @default(autoincrement())
+    id          Int          @id @default(autoincrement())
     first_name  String
     middle_name String?
     last_name   String
-    email       String      @unique
+    email       String       @unique
     password    String
     posts       Post[]
     comments    Comment[]
     images      UserImage[]
-    created_at  DateTime    @default(now())
-    updated_at  DateTime    @updatedAt
+    created_at  DateTime     @default(now())
+    updated_at  DateTime     @updatedAt
     deleted_at  DateTime?
+    roles       Role[]       @relation("UserRoles")
+    permissions Permission[] @relation("UserPermissions")
 }
 
 model UserImage {
@@ -77,4 +79,26 @@ model PostImage {
     created_at  DateTime  @default(now())
     updated_at  DateTime  @updatedAt
     deleted_at  DateTime?
+}
+
+model Role {
+    id          Int          @id @default(autoincrement())
+    name        String
+    description String
+    created_at  DateTime     @default(now())
+    updated_at  DateTime     @updatedAt
+    deleted_at  DateTime?
+    users       User[]       @relation("UserRoles")
+    permissions Permission[] @relation("RolePermissions")
+}
+
+model Permission {
+    id          Int       @id @default(autoincrement())
+    name        String
+    description String
+    created_at  DateTime  @default(now())
+    updated_at  DateTime  @updatedAt
+    deleted_at  DateTime?
+    roles       Role[]    @relation("RolePermissions")
+    users       User[]    @relation("UserPermissions")
 }

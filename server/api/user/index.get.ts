@@ -7,9 +7,7 @@ export default defineEventHandler(async (event) => {
 
 	const [users, total] = await Promise.all([
 		prisma.user.findMany({
-			take: limit,
-			skip: 1,
-			orderBy: { created_at: 'desc' },
+			orderBy: { created_at: 'asc' },
 			include: {
 				posts: {
 					select: {
@@ -18,6 +16,11 @@ export default defineEventHandler(async (event) => {
 						created_at: true,
 					},
 					take: 2,
+				},
+				roles: {
+					select: {
+						name: true,
+					},
 				},
 			},
 		}),
