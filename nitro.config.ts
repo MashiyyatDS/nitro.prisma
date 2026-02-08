@@ -20,4 +20,9 @@ export default defineNitroConfig({
 			databaseURL: process.env.DB_URL,
 		},
 	},
+	preset: 'cloudflare_module',
+	cloudflare: {
+		deployConfig: true,
+		nodeCompat: true,
+	},
 })
