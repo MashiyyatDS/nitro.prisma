@@ -5,6 +5,4 @@ dist
 .cache
 .output
 .env
-.env.local
-
-/generated/prisma
+.env.local 
