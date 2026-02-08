@@ -25,4 +25,7 @@ export default defineNitroConfig({
 		deployConfig: true,
 		nodeCompat: true,
 	},
+	rollupConfig: {
+		external: ['pg-native', 'cloudflare:sockets'],
+	},
 })
