@@ -15,4 +15,9 @@ export default defineNitroConfig({
 			},
 		},
 	},
+	runtimeConfig: {
+		app: {
+			databaseURL: process.env.DB_URL,
+		},
+	},
 })
