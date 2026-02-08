@@ -8,13 +8,6 @@ export default defineNitroConfig({
 	experimental: {
 		websocket: true,
 	},
-	routeRules: {
-		'/api/user': {
-			headers: {
-				'require-auth': 'true',
-			},
-		},
-	},
 	runtimeConfig: {
 		app: {
 			databaseURL: process.env.DB_URL,
