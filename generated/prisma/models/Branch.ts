@@ -233,7 +233,6 @@ export type BranchOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  _relevance?: Prisma.BranchOrderByRelevanceInput
 }
 
 export type BranchWhereUniqueInput = Prisma.AtLeast<{
@@ -334,12 +333,6 @@ export type BranchUncheckedUpdateManyInput = {
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type BranchOrderByRelevanceInput = {
-  fields: Prisma.BranchOrderByRelevanceFieldEnum | Prisma.BranchOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
-}
-
 export type BranchCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
@@ -386,7 +379,23 @@ export type BranchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   deleted_at?: boolean
 }, ExtArgs["result"]["branch"]>
 
+export type BranchSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  name?: boolean
+  status?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+}, ExtArgs["result"]["branch"]>
 
+export type BranchSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  name?: boolean
+  status?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+}, ExtArgs["result"]["branch"]>
 
 export type BranchSelectScalar = {
   id?: boolean
@@ -527,6 +536,30 @@ export interface BranchDelegate<ExtArgs extends runtime.Types.Extensions.Interna
   createMany<T extends BranchCreateManyArgs>(args?: Prisma.SelectSubset<T, BranchCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many Branches and returns the data saved in the database.
+   * @param {BranchCreateManyAndReturnArgs} args - Arguments to create many Branches.
+   * @example
+   * // Create many Branches
+   * const branch = await prisma.branch.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many Branches and only return the `id`
+   * const branchWithIdOnly = await prisma.branch.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends BranchCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, BranchCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a Branch.
    * @param {BranchDeleteArgs} args - Arguments to delete one Branch.
    * @example
@@ -589,6 +622,36 @@ export interface BranchDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    * 
    */
   updateMany<T extends BranchUpdateManyArgs>(args: Prisma.SelectSubset<T, BranchUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more Branches and returns the data updated in the database.
+   * @param {BranchUpdateManyAndReturnArgs} args - Arguments to update many Branches.
+   * @example
+   * // Update many Branches
+   * const branch = await prisma.branch.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more Branches and only return the `id`
+   * const branchWithIdOnly = await prisma.branch.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends BranchUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, BranchUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Branch.
@@ -993,6 +1056,25 @@ export type BranchCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
+ * Branch createManyAndReturn
+ */
+export type BranchCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Branch
+   */
+  select?: Prisma.BranchSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Branch
+   */
+  omit?: Prisma.BranchOmit<ExtArgs> | null
+  /**
+   * The data used to create many Branches.
+   */
+  data: Prisma.BranchCreateManyInput | Prisma.BranchCreateManyInput[]
+  skipDuplicates?: boolean
+}
+
+/**
  * Branch update
  */
 export type BranchUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1018,6 +1100,32 @@ export type BranchUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
  * Branch updateMany
  */
 export type BranchUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * The data used to update Branches.
+   */
+  data: Prisma.XOR<Prisma.BranchUpdateManyMutationInput, Prisma.BranchUncheckedUpdateManyInput>
+  /**
+   * Filter which Branches to update
+   */
+  where?: Prisma.BranchWhereInput
+  /**
+   * Limit how many Branches to update.
+   */
+  limit?: number
+}
+
+/**
+ * Branch updateManyAndReturn
+ */
+export type BranchUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Branch
+   */
+  select?: Prisma.BranchSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Branch
+   */
+  omit?: Prisma.BranchOmit<ExtArgs> | null
   /**
    * The data used to update Branches.
    */

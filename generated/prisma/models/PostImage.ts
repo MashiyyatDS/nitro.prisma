@@ -248,7 +248,6 @@ export type PostImageOrderByWithRelationInput = {
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   post?: Prisma.PostOrderByWithRelationInput
-  _relevance?: Prisma.PostImageOrderByRelevanceInput
 }
 
 export type PostImageWhereUniqueInput = Prisma.AtLeast<{
@@ -367,12 +366,6 @@ export type PostImageListRelationFilter = {
 
 export type PostImageOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type PostImageOrderByRelevanceInput = {
-  fields: Prisma.PostImageOrderByRelevanceFieldEnum | Prisma.PostImageOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type PostImageCountOrderByAggregateInput = {
@@ -561,7 +554,27 @@ export type PostImageSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postImage"]>
 
+export type PostImageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  url?: boolean
+  description?: boolean
+  post_id?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+  post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["postImage"]>
 
+export type PostImageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  url?: boolean
+  description?: boolean
+  post_id?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+  post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["postImage"]>
 
 export type PostImageSelectScalar = {
   id?: boolean
@@ -575,6 +588,12 @@ export type PostImageSelectScalar = {
 
 export type PostImageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "url" | "description" | "post_id" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["postImage"]>
 export type PostImageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+}
+export type PostImageIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
+}
+export type PostImageIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
 }
 
@@ -709,6 +728,30 @@ export interface PostImageDelegate<ExtArgs extends runtime.Types.Extensions.Inte
   createMany<T extends PostImageCreateManyArgs>(args?: Prisma.SelectSubset<T, PostImageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many PostImages and returns the data saved in the database.
+   * @param {PostImageCreateManyAndReturnArgs} args - Arguments to create many PostImages.
+   * @example
+   * // Create many PostImages
+   * const postImage = await prisma.postImage.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many PostImages and only return the `id`
+   * const postImageWithIdOnly = await prisma.postImage.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends PostImageCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, PostImageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostImagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a PostImage.
    * @param {PostImageDeleteArgs} args - Arguments to delete one PostImage.
    * @example
@@ -771,6 +814,36 @@ export interface PostImageDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * 
    */
   updateMany<T extends PostImageUpdateManyArgs>(args: Prisma.SelectSubset<T, PostImageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more PostImages and returns the data updated in the database.
+   * @param {PostImageUpdateManyAndReturnArgs} args - Arguments to update many PostImages.
+   * @example
+   * // Update many PostImages
+   * const postImage = await prisma.postImage.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more PostImages and only return the `id`
+   * const postImageWithIdOnly = await prisma.postImage.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends PostImageUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, PostImageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostImagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one PostImage.
@@ -1201,6 +1274,29 @@ export type PostImageCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
+ * PostImage createManyAndReturn
+ */
+export type PostImageCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PostImage
+   */
+  select?: Prisma.PostImageSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the PostImage
+   */
+  omit?: Prisma.PostImageOmit<ExtArgs> | null
+  /**
+   * The data used to create many PostImages.
+   */
+  data: Prisma.PostImageCreateManyInput | Prisma.PostImageCreateManyInput[]
+  skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostImageIncludeCreateManyAndReturn<ExtArgs> | null
+}
+
+/**
  * PostImage update
  */
 export type PostImageUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1242,6 +1338,36 @@ export type PostImageUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many PostImages to update.
    */
   limit?: number
+}
+
+/**
+ * PostImage updateManyAndReturn
+ */
+export type PostImageUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PostImage
+   */
+  select?: Prisma.PostImageSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the PostImage
+   */
+  omit?: Prisma.PostImageOmit<ExtArgs> | null
+  /**
+   * The data used to update PostImages.
+   */
+  data: Prisma.XOR<Prisma.PostImageUpdateManyMutationInput, Prisma.PostImageUncheckedUpdateManyInput>
+  /**
+   * Filter which PostImages to update
+   */
+  where?: Prisma.PostImageWhereInput
+  /**
+   * Limit how many PostImages to update.
+   */
+  limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostImageIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

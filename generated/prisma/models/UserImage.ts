@@ -248,7 +248,6 @@ export type UserImageOrderByWithRelationInput = {
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
-  _relevance?: Prisma.UserImageOrderByRelevanceInput
 }
 
 export type UserImageWhereUniqueInput = Prisma.AtLeast<{
@@ -367,12 +366,6 @@ export type UserImageListRelationFilter = {
 
 export type UserImageOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type UserImageOrderByRelevanceInput = {
-  fields: Prisma.UserImageOrderByRelevanceFieldEnum | Prisma.UserImageOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type UserImageCountOrderByAggregateInput = {
@@ -561,7 +554,27 @@ export type UserImageSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userImage"]>
 
+export type UserImageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  url?: boolean
+  description?: boolean
+  user_id?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["userImage"]>
 
+export type UserImageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  url?: boolean
+  description?: boolean
+  user_id?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["userImage"]>
 
 export type UserImageSelectScalar = {
   id?: boolean
@@ -575,6 +588,12 @@ export type UserImageSelectScalar = {
 
 export type UserImageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "url" | "description" | "user_id" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["userImage"]>
 export type UserImageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type UserImageIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type UserImageIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
@@ -709,6 +728,30 @@ export interface UserImageDelegate<ExtArgs extends runtime.Types.Extensions.Inte
   createMany<T extends UserImageCreateManyArgs>(args?: Prisma.SelectSubset<T, UserImageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many UserImages and returns the data saved in the database.
+   * @param {UserImageCreateManyAndReturnArgs} args - Arguments to create many UserImages.
+   * @example
+   * // Create many UserImages
+   * const userImage = await prisma.userImage.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many UserImages and only return the `id`
+   * const userImageWithIdOnly = await prisma.userImage.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends UserImageCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, UserImageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserImagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a UserImage.
    * @param {UserImageDeleteArgs} args - Arguments to delete one UserImage.
    * @example
@@ -771,6 +814,36 @@ export interface UserImageDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * 
    */
   updateMany<T extends UserImageUpdateManyArgs>(args: Prisma.SelectSubset<T, UserImageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more UserImages and returns the data updated in the database.
+   * @param {UserImageUpdateManyAndReturnArgs} args - Arguments to update many UserImages.
+   * @example
+   * // Update many UserImages
+   * const userImage = await prisma.userImage.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more UserImages and only return the `id`
+   * const userImageWithIdOnly = await prisma.userImage.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends UserImageUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, UserImageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserImagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one UserImage.
@@ -1201,6 +1274,29 @@ export type UserImageCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
+ * UserImage createManyAndReturn
+ */
+export type UserImageCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserImage
+   */
+  select?: Prisma.UserImageSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserImage
+   */
+  omit?: Prisma.UserImageOmit<ExtArgs> | null
+  /**
+   * The data used to create many UserImages.
+   */
+  data: Prisma.UserImageCreateManyInput | Prisma.UserImageCreateManyInput[]
+  skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserImageIncludeCreateManyAndReturn<ExtArgs> | null
+}
+
+/**
  * UserImage update
  */
 export type UserImageUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1242,6 +1338,36 @@ export type UserImageUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many UserImages to update.
    */
   limit?: number
+}
+
+/**
+ * UserImage updateManyAndReturn
+ */
+export type UserImageUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserImage
+   */
+  select?: Prisma.UserImageSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserImage
+   */
+  omit?: Prisma.UserImageOmit<ExtArgs> | null
+  /**
+   * The data used to update UserImages.
+   */
+  data: Prisma.XOR<Prisma.UserImageUpdateManyMutationInput, Prisma.UserImageUncheckedUpdateManyInput>
+  /**
+   * Filter which UserImages to update
+   */
+  where?: Prisma.UserImageWhereInput
+  /**
+   * Limit how many UserImages to update.
+   */
+  limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserImageIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

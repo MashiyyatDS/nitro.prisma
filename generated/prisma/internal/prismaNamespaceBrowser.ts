@@ -189,76 +189,18 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+} as const
+
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
 export const NullsOrder = {
   first: 'first',
   last: 'last'
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-export const UserOrderByRelevanceFieldEnum = {
-  first_name: 'first_name',
-  middle_name: 'middle_name',
-  last_name: 'last_name',
-  email: 'email',
-  password: 'password'
-} as const
-
-export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
-
-
-export const UserImageOrderByRelevanceFieldEnum = {
-  url: 'url',
-  description: 'description'
-} as const
-
-export type UserImageOrderByRelevanceFieldEnum = (typeof UserImageOrderByRelevanceFieldEnum)[keyof typeof UserImageOrderByRelevanceFieldEnum]
-
-
-export const CommentOrderByRelevanceFieldEnum = {
-  content: 'content'
-} as const
-
-export type CommentOrderByRelevanceFieldEnum = (typeof CommentOrderByRelevanceFieldEnum)[keyof typeof CommentOrderByRelevanceFieldEnum]
-
-
-export const BranchOrderByRelevanceFieldEnum = {
-  name: 'name',
-  status: 'status'
-} as const
-
-export type BranchOrderByRelevanceFieldEnum = (typeof BranchOrderByRelevanceFieldEnum)[keyof typeof BranchOrderByRelevanceFieldEnum]
-
-
-export const PostOrderByRelevanceFieldEnum = {
-  title: 'title',
-  content: 'content'
-} as const
-
-export type PostOrderByRelevanceFieldEnum = (typeof PostOrderByRelevanceFieldEnum)[keyof typeof PostOrderByRelevanceFieldEnum]
-
-
-export const PostImageOrderByRelevanceFieldEnum = {
-  url: 'url',
-  description: 'description'
-} as const
-
-export type PostImageOrderByRelevanceFieldEnum = (typeof PostImageOrderByRelevanceFieldEnum)[keyof typeof PostImageOrderByRelevanceFieldEnum]
-
-
-export const RoleOrderByRelevanceFieldEnum = {
-  name: 'name',
-  description: 'description'
-} as const
-
-export type RoleOrderByRelevanceFieldEnum = (typeof RoleOrderByRelevanceFieldEnum)[keyof typeof RoleOrderByRelevanceFieldEnum]
-
-
-export const PermissionOrderByRelevanceFieldEnum = {
-  name: 'name',
-  description: 'description'
-} as const
-
-export type PermissionOrderByRelevanceFieldEnum = (typeof PermissionOrderByRelevanceFieldEnum)[keyof typeof PermissionOrderByRelevanceFieldEnum]
 
