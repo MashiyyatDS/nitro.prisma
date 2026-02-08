@@ -1,29 +1,29 @@
+import { Role } from 'generated/prisma/client'
 import { defineEventHandler, readBody } from 'h3'
 import prisma from '~/lib/prisma'
 
 export default defineEventHandler(async (event) => {
-	const payload = await readBody(event)
+	const payload: Role = await readBody(event)
 
 	const role = await prisma.role.create({
 		data: {
-			name: 'Utility',
-			description: '',
+			...payload,
 			permissions: {
 				create: [
 					{
-						name: 'Create User',
+						name: `Create ${payload.name}`,
 						description: 'No Description',
 					},
 					{
-						name: 'Read User',
+						name: `Read ${payload.name}`,
 						description: 'No Description',
 					},
 					{
-						name: 'Update User',
+						name: `Update ${payload.name}`,
 						description: 'No Description',
 					},
 					{
-						name: 'Delete User',
+						name: `Delete ${payload.name}`,
 						description: 'No Description',
 					},
 				],

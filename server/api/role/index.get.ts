@@ -1,6 +1,5 @@
 import { defineEventHandler } from 'h3'
 import prisma from '~/lib/prisma'
-import { useCrypto } from '~/utils/utils'
 
 export default defineEventHandler(async (event) => {
 	const roles = await prisma.role.findMany({
@@ -16,7 +15,10 @@ export default defineEventHandler(async (event) => {
 				},
 			},
 		},
+		orderBy: {
+			name: 'asc',
+		},
 	})
 
-	return useCrypto().encrypt({ roles })
+	return { roles }
 })

@@ -1,10 +1,7 @@
-import 'dotenv/config'
-//import { PrismaPg } from '@prisma/adapter-pg'
-import { PrismaMariaDb } from '@prisma/adapter-mariadb'
 import { PrismaClient } from '../../generated/prisma/client'
+import { PrismaMariaDb } from '@prisma/adapter-mariadb'
 import { z } from 'zod'
-
-const connectionString = `${process.env.DATABASE_URL}`
+import 'dotenv/config'
 
 export const UserCreateInput = z.object({
 	first_name: z.string().min(2).max(100),
@@ -13,15 +10,12 @@ export const UserCreateInput = z.object({
 	password: z.string().min(6).max(100),
 })
 
-//const adapter = new PrismaPg({ connectionString })
-
 const adapter = new PrismaMariaDb({
-	host: '127.0.0.1',
-	port: 3306,
-	password: '',
-	user: 'root',
-	database: 'nitro_prisma',
-	connectionLimit: 5,
+	host: process.env.DB_HOST,
+	port: Number(process.env.DB_PORT) ?? 3306,
+	password: process.env.DB_PASSWORD,
+	user: process.env.DB_USER,
+	database: process.env.DB_NAME,
 })
 
 const prisma = new PrismaClient({ adapter }).$extends({
