@@ -1,11 +1,11 @@
 import { Role } from 'generated/prisma/client'
 import { defineEventHandler, readBody } from 'h3'
-import prisma from '~/lib/prisma'
+import usePrisma from '~/lib/prisma'
 
 export default defineEventHandler(async (event) => {
 	const payload: Role = await readBody(event)
 
-	const role = await prisma.role.create({
+	const role = await usePrisma().role.create({
 		data: {
 			...payload,
 			permissions: {
