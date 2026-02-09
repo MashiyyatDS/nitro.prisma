@@ -1,14 +1,15 @@
 import { PrismaClient } from '../../generated/prisma/client'
-import 'dotenv/config'
 import { PrismaPg } from '@prisma/adapter-pg'
+import 'dotenv/config'
 
-const connectionString = `postgresql://postgres:password@localhost:5432/nitro_prisma`
+export default function usePrisma() {
+	const connectionString = `postgres://e6fc40930c12f122cfa876caae3d4072923a4cdc1bbcd86c50d64952ed86397e:sk_bsFKpT4WKYZymFfX8ZcK5@db.prisma.io:5432/postgres?sslmode=require`
 
-//const connectionString = `${process.env.DB_URL}`
-const adapter = new PrismaPg({
-	connectionString,
-})
+	const adapter = new PrismaPg({
+		connectionString,
+	})
 
-const prisma = new PrismaClient({ adapter })
+	const prisma = new PrismaClient({ adapter })
 
-export default prisma
+	return prisma
+}

@@ -6,7 +6,7 @@
 		"dev": "nitro dev",
 		"preview": "node .output/server/index.mjs",
 		"prisma-migrate": "npx prisma migrate dev --name init && npx prisma generate",
-		"wrangler-preview": "pnpm build && pnpm dlx wrangler dev"
+		"wrangler-preview": "npx prisma generate && pnpm build && pnpm dlx wrangler dev"
 	},
 	"devDependencies": {
 		"@types/bcrypt": "^6.0.0",

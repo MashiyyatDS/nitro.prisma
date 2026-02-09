@@ -7,13 +7,14 @@ export default defineNitroConfig({
 	imports: false,
 	experimental: {
 		websocket: true,
+		wasm: true,
 	},
 	runtimeConfig: {
 		app: {
 			databaseURL: process.env.DB_URL,
 		},
 	},
-	preset: 'cloudflare_worker',
+	preset: 'cloudflare-module',
 	cloudflare: {
 		deployConfig: true,
 		nodeCompat: true,
@@ -21,4 +22,5 @@ export default defineNitroConfig({
 	rollupConfig: {
 		external: ['pg-native', 'cloudflare:sockets'],
 	},
+	wasm: { lazy: true, esmImport: true },
 })

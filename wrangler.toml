@@ -1,12 +1,3 @@
 [node_compat]
-# Ensure this is enabled
 node_compat = true
-
-[wasm_modules]
-# This tells Cloudflare how to handle .wasm files
-
-# This is often necessary for modern Prisma/Wasm interop
-[[rules]]
-type = "CompiledWasm"
-globs = ["**/*.wasm"]
-fallthrough = true
+compatibility_flags = ["nodejs_compat"]
