@@ -1,28 +1,24 @@
-import { defineEventHandler } from 'h3'
+import { createError, defineEventHandler } from 'h3'
 import prisma from '~/lib/prisma'
 
 export default defineEventHandler(async (event) => {
-	try {
-		const roles = await prisma.role.findMany({
-			select: {
-				id: true,
-				name: true,
-				description: true,
-				permissions: {
-					select: {
-						id: true,
-						name: true,
-						description: true,
-					},
+	const roles = await prisma.role.findMany({
+		select: {
+			id: true,
+			name: true,
+			description: true,
+			permissions: {
+				select: {
+					id: true,
+					name: true,
+					description: true,
 				},
 			},
-			orderBy: {
-				name: 'asc',
-			},
-		})
+		},
+		orderBy: {
+			name: 'asc',
+		},
+	})
 
-		return { roles }
-	} catch (error) {
-		return { error }
-	}
+	return { roles }
 })

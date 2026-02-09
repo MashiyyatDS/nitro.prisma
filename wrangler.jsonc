@@ -1,0 +1,15 @@
+{
+	"name": "nitro-prisma",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"compatibility_date": "2024-01-01",
+	"d1_databases": [
+		{
+			"binding": "nitro_prisma",
+			"database_name": "nitro-prisma",
+			"database_id": "2c8a13b8-456a-49c7-a043-c196ec80e42e",
+			"remote": true
+		}
+	],
+}

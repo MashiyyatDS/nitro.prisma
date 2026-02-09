@@ -3,12 +3,14 @@
 import 'dotenv/config'
 import { defineConfig, env } from 'prisma/config'
 
+const url = `postgresql://postgres:password@localhost:5432/nitro_prisma`
+
 export default defineConfig({
 	schema: 'prisma/schema.prisma',
 	migrations: {
 		path: 'prisma/migrations',
 	},
 	datasource: {
-		url: env('DB_URL'),
+		url,
 	},
 })
