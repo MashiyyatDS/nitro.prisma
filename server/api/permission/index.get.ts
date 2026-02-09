@@ -1,8 +1,8 @@
 import { defineEventHandler } from 'h3'
-import prisma from '~/lib/prisma'
+import usePrisma from '~/lib/prisma'
 
 export default defineEventHandler(async () => {
-	const permissions = await prisma.permission.findMany({
+	const permissions = await usePrisma().permission.findMany({
 		select: {
 			id: true,
 			name: true,
