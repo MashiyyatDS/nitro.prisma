@@ -13,12 +13,12 @@ export default defineNitroConfig({
 			databaseURL: process.env.DB_URL,
 		},
 	},
-	preset: 'cloudflare_module',
-	cloudflare: {
-		deployConfig: true,
-		nodeCompat: true,
-	},
-	rollupConfig: {
-		external: ['pg-native', 'cloudflare:sockets'],
-	},
+	//preset: 'vercel-edge',
+	//cloudflare: {
+	//	deployConfig: true,
+	//	nodeCompat: true,
+	//},
+	//rollupConfig: {
+	//	external: ['pg-native', 'cloudflare:sockets'],
+	//},
 })
